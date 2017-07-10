@@ -12,7 +12,13 @@ public class Ants {
     // Receive input
     Scanner scan = new Scanner(System.in);
     // Input loop
-    String line = scan.nextLine(); 
+    while (scan.hasNextLine()) {
+      String line = scan.nextLine();
+      String[] lineArray = line.split(" ");
+      switch (lineArray.length) {
+        case 3:
+      }
+    }
     // Check line input for line of DNA or number of turns for scenario
     // Remember to ignore lines starting with hashes
     // Input line into scenarioDNA or scenarioTurns
@@ -28,7 +34,7 @@ public class Ants {
     char defaultChar; // Initialize to default value
     // Initialize plane with default value
     int turnsPassed = 0;
-    Direction lastAntDirection = NORTH;
+    Direction lastAntDirection = Direction.NORTH;
     // While number of turns passed is less than turns for scenario
     // Change current tile based on current state of tile
     // Change ant position based on last ant direction
