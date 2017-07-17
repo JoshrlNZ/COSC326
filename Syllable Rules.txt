@@ -1,0 +1,15 @@
+If a word has a t, d, l in front of ‘ed’ then leave it alone, otherwise remove the ‘ed’.
+
+count ‘io’ as two syllables unless it as a ’t’, ’s’ or ‘h’ at the front (fellatio) (‘glorious’ could be a problem when programming)
+however count ‘io’ as two where it has no ’n’ after it and a ’t’ at the front.
+
+
+iou should be counted as two syllables unless ’t’ ‘h’ or ‘x’ ’s’ ‘c’ are before it.
+
+c in front of iou means count them as one, c in front of io means count them as two
+
+
+problems:
+media, radio (initial)
+
+ing words such as going
