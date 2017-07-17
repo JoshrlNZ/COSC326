@@ -18,13 +18,38 @@ public class Syllables {
     boolean lastCharVowel = false;
     boolean foundVowel = false;
     int syllableCount = 0;
-    //'the' and 'me' are exceptions to this rule.
-    if(word.charAt(word.length()-1) == 'e' && (!word.equals("the")) && (!word.equals("me"))){
-      if(word.charAt(word.length()-2) != 'l'){
-        //removing the 'e' from the word
-        word = word.substring(0, word.length()-1);
+    boolean eFound = false;
+    ArrayList<Character> vowelArray = new ArrayList<Character>();
+    for(int i = 0; i < vowels.length(); i++){
+      vowelArray.add(vowels.charAt(i));
+    }
+    
+    // swapped vowel-consonant-e
+    for (int i = 0; i < word.length()-2; i++) {
+      if (vowelArray.contains(word.charAt(i)) && !vowelArray.contains(word.charAt(i+1))&& word.charAt(i+2) == 'e') {
+        word = changeCharacter(word, i+2, word.charAt(i+1));
+        word = changeCharacter(word, i+1, word.charAt(i));
+        word = changeCharacter(word, i, 'e');
+        System.out.println(word);
       }
     }
+    
+    if (word.substring(word.length()-2, word.length()).equals("ed")) {
+      System.out.println("changed to " + word.substring(0, word.length()-2));
+      eFound = true;
+      word = word.substring(0, word.length()-2);
+    } else {
+      if(word.charAt(word.length()-1) == 'e'){
+        if(word.charAt(word.length()-2) != 'l'){
+          //removing the 'e' from the word
+          word = word.substring(0, word.length()-1);
+          eFound = true;
+          System.out.println("e removed");
+        }
+      }
+    }
+    
+    
     
     //finding the syllables.
     for(int i = 0; i < word.length(); i++){
@@ -45,7 +70,17 @@ public class Syllables {
       }
       foundVowel = false;
     }
+    if (eFound && syllableCount == 0) {
+      syllableCount++;
+      System.out.println("added syllable as e was the only vowel but removed");
+    }
+    
     System.out.println(syllableCount);
   }
   
+  public static String changeCharacter (String word, int index, char character) {
+    char[] wordChars = word.toCharArray();
+    wordChars[index] = character;
+    return String.valueOf(wordChars);
+  }
 }
